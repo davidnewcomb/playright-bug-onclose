@@ -39,12 +39,12 @@ public class Main {
 		});
 
 		for (int i = 10; i != 0; --i) {
+			log("Close window, you have " + i + " seconds to comply! Connected/Closed=" + browser.isConnected() + "/"
+					+ page.isClosed());
 			try {
-				log("Close window, you have " + i + " seconds to comply! Connected/Closed=" + browser.isConnected()
-						+ "/" + page.isClosed());
-				Thread.sleep(1_000);
-			} catch (InterruptedException e) {
-				log("Interrupted!");
+				page.waitForTimeout(5000);
+			} catch (Throwable t) {
+				// don't care
 			}
 		}
 		log("I am now calling browserContext.close()");
